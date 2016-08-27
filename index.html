@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bundled Sticks Inkorperated</title>
+		<link rel="icon" type="image/png" href="favicon.png" />
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css" />
+		<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
+		<script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
+		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
+		<script src="https://bundledsticksinkorperated.github.io/js/bootstrap.min.js"></script>
+		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
+	</head>
+	<body>
+		<canvas id="background"></canvas>
+		<div class="container">
+			<div class="jumbotron glassish text-xs-center">
+				<h1 class="display-3">Discore</h1>
+				<p class="lead text-muted">Bundled Sticks</p>
+				<hr class="m-y-2" />
+				<p>A .NET Core Library for the Discord API</p>
+				<p class="lead">
+					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
+				</p>
+			</div>
+			<script>
+				var pattern = Trianglify({
+					width: window.innerWidth,
+					height: window.innerHeight,
+					variance: "0.2"
+				});
+				pattern.canvas(document.getElementById('background'));
+		</script>
+	</body>
+</html>
