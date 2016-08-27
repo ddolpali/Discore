@@ -6,25 +6,73 @@
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css" />
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css" />
 		<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/bootstrap.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.colors.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
 	</head>
 	<body>
 		<canvas id="background"></canvas>
 		<div class="container">
 			<div id="ctaJumbo" class="jumbotron glassish text-xs-center">
 				<h1 class="display-3">Discore</h1>
-				<p class="lead text-muted">Bundled Sticks</p>
+				<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
 				<hr class="m-y-2" />
 				<p>A .NET Core Library for the Discord API</p>
 				<p class="lead">
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
 					<a class="btn btn-github bnt-lg" href="/Discore/Docs"><i class="fa fa-book"></i> Docs</a>
 				</p>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card glassish">
+						<div class="card-block">
+							<h4 class="card-header text-xs-center">Example - !Ping bot</h4>
+						</div>
+						<pre><code class="cs">using System;
+using Discore;
+
+namespace example_bot
+{
+    public class Program
+    {
+        const string TOKEN = "";
+
+        public static void Main(string[] args)
+        {
+            DiscordClient myBot = new DiscordClient();
+
+            myBot.OnConnected += (sender, e) => {
+                Console.WriteLine($"Connected as {myBot.User}!");
+            };
+
+            myBot.OnMessageCreated += (sender, e) => {
+                DiscordMessage message = e.Message;
+                if (message.Author != myBot.User //if we didnt post it
+		&& message.Content.Contains("!ping")) //and contains !ping
+                {
+                    message.Channel.SendMessage("pong!");
+                }
+            };
+
+            if (!myBot.Connect(TOKEN).Result)
+            {
+                Console.WriteLine("Failed to connect!");
+            }
+
+        }
+    }
+}</code></pre>
+					<div class="card-block">
+						<p class="card-text text-xs-center">Most of this library is documented in XML comments which means you should be able to just start creating your bots within minutes!</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script>
