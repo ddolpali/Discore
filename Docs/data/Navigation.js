@@ -51,12 +51,6 @@ sharpDox.navigationData = [
 			a_attr: { href : '#!type/Discore.DiscordApiDataType' }
         },	
 		{
-			id: 'Discore.DiscordApiInfoCache',
-			text: 'DiscordApiInfoCache',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.DiscordApiInfoCache' }
-        },	
-		{
 			id: 'Discore.DiscordAttachment',
 			text: 'DiscordAttachment',
 			icon: './assets/icons/class_public.png',
@@ -364,12 +358,6 @@ sharpDox.navigationData = [
  
 
 		{
-			id: 'Discore.Audio.CircularBuffer',
-			text: 'CircularBuffer',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.CircularBuffer' }
-        },	
-		{
 			id: 'Discore.Audio.DiscordVoiceClient',
 			text: 'DiscordVoiceClient',
 			icon: './assets/icons/class_public.png',
@@ -387,72 +375,6 @@ sharpDox.navigationData = [
 			icon: './assets/icons/class_public.png',
 			a_attr: { href : '#!type/Discore.Audio.DiscordVoiceState' }
         },	
-		{
-			id: 'Discore.Audio.IOpusConverter',
-			text: 'IOpusConverter',
-			icon: './assets/icons/interface_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.IOpusConverter' }
-        },	
-		{
-			id: 'Discore.Audio.IPDiscoveryEventArgs',
-			text: 'IPDiscoveryEventArgs',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.IPDiscoveryEventArgs' }
-        },	
-		{
-			id: 'Discore.Audio.OpusApplication',
-			text: 'OpusApplication',
-			icon: './assets/icons/enum_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.OpusApplication' }
-        },	
-		{
-			id: 'Discore.Audio.OpusConverter',
-			text: 'OpusConverter',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.OpusConverter' }
-        },	
-		{
-			id: 'Discore.Audio.OpusCtl',
-			text: 'OpusCtl',
-			icon: './assets/icons/enum_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.OpusCtl' }
-        },	
-		{
-			id: 'Discore.Audio.OpusEncoder',
-			text: 'OpusEncoder',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.OpusEncoder' }
-        },	
-		{
-			id: 'Discore.Audio.OpusError',
-			text: 'OpusError',
-			icon: './assets/icons/enum_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.OpusError' }
-        },	
-		{
-			id: 'Discore.Audio.VoiceBuffer',
-			text: 'VoiceBuffer',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.VoiceBuffer' }
-        },	
-		{
-			id: 'Discore.Audio.VoiceSocket',
-			text: 'VoiceSocket',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.VoiceSocket' }
-        },	
-		{
-			id: 'Discore.Audio.VoiceSocketOPCode',
-			text: 'VoiceSocketOPCode',
-			icon: './assets/icons/enum_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.VoiceSocketOPCode' }
-        },	
-		{
-			id: 'Discore.Audio.VoiceUDPSocket',
-			text: 'VoiceUDPSocket',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Audio.VoiceUDPSocket' }
-        },	
 
 
 		]
@@ -466,12 +388,6 @@ sharpDox.navigationData = [
 			
  
 
-		{
-			id: 'Discore.Net.DiscordClientWebSocket',
-			text: 'DiscordClientWebSocket',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.DiscordClientWebSocket' }
-        },	
 		{
 			id: 'Discore.Net.DiscordGatewayException',
 			text: 'DiscordGatewayException',
@@ -503,18 +419,6 @@ sharpDox.navigationData = [
 			a_attr: { href : '#!type/Discore.Net.GatewayDisconnectCode' }
         },	
 		{
-			id: 'Discore.Net.GatewayOPCode',
-			text: 'GatewayOPCode',
-			icon: './assets/icons/enum_internal.png',
-			a_attr: { href : '#!type/Discore.Net.GatewayOPCode' }
-        },	
-		{
-			id: 'Discore.Net.GatewaySocket',
-			text: 'GatewaySocket',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.GatewaySocket' }
-        },	
-		{
 			id: 'Discore.Net.IDiscordGateway',
 			text: 'IDiscordGateway',
 			icon: './assets/icons/interface_public.png',
@@ -537,42 +441,6 @@ sharpDox.navigationData = [
 			text: 'IDiscordRestMessagesService',
 			icon: './assets/icons/interface_public.png',
 			a_attr: { href : '#!type/Discore.Net.IDiscordRestMessagesService' }
-        },	
-		{
-			id: 'Discore.Net.RestClient',
-			text: 'RestClient',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClient' }
-        },	
-		{
-			id: 'Discore.Net.RestClientChannelsService',
-			text: 'RestClientChannelsService',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClientChannelsService' }
-        },	
-		{
-			id: 'Discore.Net.RestClientInternalService',
-			text: 'RestClientInternalService',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClientInternalService' }
-        },	
-		{
-			id: 'Discore.Net.RestClientMessagesService',
-			text: 'RestClientMessagesService',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClientMessagesService' }
-        },	
-		{
-			id: 'Discore.Net.RestClientRateLimitManager',
-			text: 'RestClientRateLimitManager',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClientRateLimitManager' }
-        },	
-		{
-			id: 'Discore.Net.RestClientService',
-			text: 'RestClientService',
-			icon: './assets/icons/class_internal.png',
-			a_attr: { href : '#!type/Discore.Net.RestClientService' }
         },	
 		{
 			id: 'Discore.Net.RestErrorCode',

@@ -1,5 +1,3 @@
-
-
 var sharpDox = sharpDox || {};
 
 sharpDox.projectData = {
