@@ -23,55 +23,71 @@
 				<h1 class="display-3">Discore</h1>
 				<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
 				<hr class="m-y-2" />
-				<p>A .NET Core Library for the Discord API</p>
+				<p>An unofficial .NET Core library for the Discord API</p>
 				<p class="lead">
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
-					<a class="btn btn-github bnt-lg" href="/Discore/Docs"><i class="fa fa-book"></i> Docs</a>
+					<!--<a class="btn btn-github bnt-lg" href="/Discore/Docs"><i class="fa fa-book"></i> Docs</a>-->
 				</p>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card glassish">
 						<div class="card-block">
-							<h4 class="card-header text-xs-center">Example - !Ping bot</h4>
+							<h4 class="card-header text-xs-center">Example Bot: Ping Pong</h4>
 						</div>
-						<pre><code class="cs">using System;
-using Discore;
+						<pre><code class="cs">using Discore;
+using Discore.WebSocket;
+using System;
+using System.Threading;
 
-namespace example_bot
+namespace DiscorePingPong
 {
     public class Program
     {
-        const string TOKEN = "";
-
         public static void Main(string[] args)
         {
-            DiscordClient myBot = new DiscordClient();
+            // Create authenticator using a bot user token.
+            DiscordBotUserToken token = new DiscordBotUserToken("<bot user token goes here>");
 
-            myBot.OnConnected += (sender, e) => {
-                Console.WriteLine($"Connected as {myBot.User}!");
-            };
+            // Create a WebSocket application.
+            DiscordWebSocketApplication app = new DiscordWebSocketApplication(token);
 
-            myBot.OnMessageCreated += (sender, e) => {
-                DiscordMessage message = e.Message;
-                if (message.Author != myBot.User //if we didnt post it
-		&& message.Content.Contains("!ping")) //and contains !ping
-                {
-                    message.Channel.SendMessage("pong!");
-                }
-            };
+            // Create and start a single shard.
+            Shard shard = app.ShardManager.CreateSingleShard();
+            shard.Start();
 
-            if (!myBot.Connect(TOKEN).Result)
+            // Subscribe to the message creation event.
+            shard.Gateway.OnMessageCreated += Gateway_OnMessageCreated;
+
+            // Wait for the shard to end before closing the program.
+            while (shard.IsRunning)
+                Thread.Sleep(100);
+        }
+
+        private static async void Gateway_OnMessageCreated(object sender, MessageEventArgs e)
+        {
+            Shard shard = e.Shard;
+            DiscordMessage message = e.Message;
+
+            if (message.Author == shard.User)
+                // Ignore messages created by our bot.
+                return;
+
+            if (message.Content == "!ping")
             {
-                Console.WriteLine("Failed to connect!");
-            }
+                // Grab the DM or guild text channel this message was posted in from cache.
+                ITextChannel textChannel = (ITextChannel)shard.Cache.Channels.Get(message.ChannelId);
 
+                try
+                {
+                    // Reply to the user who posted "!ping".
+                    await textChannel.SendMessage($"<@{message.Author.Id}> Pong!");
+                }
+                catch (Exception) {  /* Message failed to send... :( */ }
+            }
         }
     }
 }</code></pre>
-					<div class="card-block">
-						<p class="card-text text-xs-center">Most of this library is documented in XML comments which means you should be able to just start creating your bots within minutes!</p>
-					</div>
 				</div>
 			</div>
 		</div>
