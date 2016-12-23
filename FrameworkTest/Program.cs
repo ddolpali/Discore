@@ -18,7 +18,7 @@ namespace FrameworkTest
 
         public static void Main(string[] args)
         {
-            string token = "MTkyMDYyNzM2OTMzNDUzODI0.CzlXBw.cIGtI0VzNMlkaWLsd-DLm0AJvRM";
+            string token = File.ReadAllText("token.txt").Trim();
 
             DiscoreLogger.OnLog += DiscoreLogger_OnLog;
 

@@ -7,3 +7,4 @@ project.lock.json
 .DS_Store
 token.txt
 *.xproj.user
+discore-local-storage.json

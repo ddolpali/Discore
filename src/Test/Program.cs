@@ -1,6 +1,7 @@
 ﻿using Discore;
 using Discore.WebSocket;
 using System;
+using System.IO;
 using System.Threading;
 
 namespace DiscoreBotTest
@@ -12,7 +13,7 @@ namespace DiscoreBotTest
 
         public static void Main(string[] args)
         {
-            string token = "MTkyMDYyNzM2OTMzNDUzODI0.CzlXBw.cIGtI0VzNMlkaWLsd-DLm0AJvRM";
+            string token = File.ReadAllText("token.txt").Trim();
 
             DiscoreLogger.OnLog += DiscoreLogger_OnLog;
 
