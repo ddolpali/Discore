@@ -1,5 +1,10 @@
+This branch is for experimental use etc...
+
+It's not fully tested and will most likely drop out of sync with master
+
+There is no NuGet package
+
 # Discore
-[![NuGet](https://img.shields.io/nuget/v/Discore.svg?style=flat-square?maxAge=2592000)](https://www.nuget.org/packages/Discore/)
 
 ***Discord + .NET Core = Discore***
 
