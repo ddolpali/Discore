@@ -114,7 +114,11 @@ namespace Discore.WebSocket.Net
             }
 
             DiscordApiData props = data.Set("properties", new DiscordApiData(DiscordApiDataType.Container));
+#if CORE
             props.Set("$os", RuntimeInformation.OSDescription);
+#else
+            props.Set("$os", "Windows");
+#endif
             props.Set("$browser", "discore");
             props.Set("$device", "discore");
             props.Set("$referrer", "");

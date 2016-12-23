@@ -1,5 +1,8 @@
 ﻿using System;
+
+#if CORE
 using System.Runtime.InteropServices;
+#endif
 
 namespace Discore.Voice.Net
 {
@@ -52,25 +55,21 @@ namespace Discore.Voice.Net
 
         protected OpusConverter(int samplingRate, int channels, int frameLength)
         {
+#if CORE
             var os = RuntimeInformation.OSDescription.ToLower();
 
             if (os.Contains("linux"))
-            { //Linux*
                 Opus = new UnsafeNativeMethods.OpusLinux();
-            }
             else if (os.Contains("windows"))
-            { //Microsoft
                 Opus = new UnsafeNativeMethods.OpusWindows();
-            }
             else if (os.Contains("darwin"))
-            { //Mac
                 Opus = new UnsafeNativeMethods.OpusDarwin();
-            }
             else
-            {
                 throw new PlatformNotSupportedException($"{os} isn't supported currently");
-            }
+#elif FRAMEWORK
+            Opus = new UnsafeNativeMethods.OpusWindows();
 
+#endif
             if (samplingRate != 8000 && samplingRate != 12000 &&
                 samplingRate != 16000 && samplingRate != 24000 &&
                 samplingRate != 48000)
@@ -86,7 +85,7 @@ namespace Discore.Voice.Net
             FrameSize = SamplesPerFrame * SampleSize;
         }
 
-        #region IDisposable Support
+#region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
@@ -103,6 +102,6 @@ namespace Discore.Voice.Net
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
+#endregion
     }
 }

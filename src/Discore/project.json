@@ -1,9 +1,15 @@
 {
   "title": "Discore",
-  "version": "2.0.0.0",
+  "version": "2.0.0.0-Framework",
   "copyright": "Bundled Sticks Inkorporated 2016",
   "description": "Discore aims to fully implement two sides of the Discord API: the HTTP API, and the realtime WebSocket API. It's designed for creating Discord bot applications, as well as applications that do not require realtime data. Please note! Discore is not an official Discord API wrapper.",
   "authors": [ "Ethan Lafrenais", "Tristan Smith" ],
+
+  "buildOptions": {
+    "allowUnsafe": true,
+    "xmlDoc": true,
+    "nowarn": [ "1591", "1573" ]
+  },
 
   "packOptions": {
     "licenseUrl": "https://github.com/BundledSticksInkorperated/Discore/blob/master/LICENSE.md",
@@ -18,27 +24,37 @@
   },
 
   "dependencies": {
-    "NETStandard.Library": "1.6.1",
-    "Newtonsoft.Json": "9.0.1",
-    "System.Collections.NonGeneric": "4.3.0",
-    "System.Net.NameResolution": "4.3.0",
-    "System.Net.WebSockets": "4.3.0",
-    "System.Net.WebSockets.Client": "4.3.0",
-    "System.Runtime": "4.3.0",
-    "System.Threading": "4.3.0",
-    "System.Threading.Thread": "4.3.0",
-    "System.Threading.ThreadPool": "4.3.0"
+    "Newtonsoft.Json": "9.0.1"
   },
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "buildOptions": {
+        "define": [ "CORE" ]
+      },
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.1",
+        "System.Collections.NonGeneric": "4.3.0",
+        "System.Net.NameResolution": "4.3.0",
+        "System.Net.WebSockets": "4.3.0",
+        "System.Net.WebSockets.Client": "4.3.0",
+        "System.Runtime": "4.3.0",
+        "System.Threading": "4.3.0",
+        "System.Threading.Thread": "4.3.0",
+        "System.Threading.ThreadPool": "4.3.0"
+      }
+    },
+    "net46": {
+      "buildOptions": {
+        "define": [ "FRAMEWORK" ]
+      },
+      "imports" : "net46",
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Net": "",
+        "System.Net.Http": ""
+      }
     }
-  },
-
-  "buildOptions": {
-    "allowUnsafe": true,
-    "xmlDoc": true,
-    "nowarn": [ "1591", "1573" ]
   }
 }
