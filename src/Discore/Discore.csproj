@@ -1,45 +1,59 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <Copyright>Bundled Sticks Inkorporated 2017</Copyright>
-    <Version>2.2.0</Version>
-    <AssemblyVersion>2.2.0.0</AssemblyVersion>
-    <FileVersion>2.2.0.0</FileVersion>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <Copyright>Bundled Sticks Inkorporated 2018</Copyright>
+    <Version>4.2.0</Version>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
     <Authors>Ethan Lafrenais;Tristan Smith</Authors>
-    <PackageTags>Discord;Discord API</PackageTags>
+    <PackageTags>discord;discord-api;discord-library;dotnet-standard</PackageTags>
     <Company>Bundled Sticks Inkorporated</Company>
-    <Description>Discore provides a .NET Standard interface with Discord's HTTP, WebSocket, and voice APIs.
+    <Description>Discore is a light-weight .NET Standard library designed for creating Discord bots.
+
 Please note: Discore is not an official Discord API interface!</Description>
     <PackageLicenseUrl>https://github.com/BundledSticksInkorperated/Discore/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/BundledSticksInkorperated/Discore.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://bundledsticksinkorperated.github.io/Discore/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/BundledSticksInkorperated/Discore</PackageProjectUrl>
+    <PackageReleaseNotes>- Discore no longer creates/uses the discore-local-storage.json file. This file can be removed from any projects using Discore.
+- ShardFailureReason.IOError has been deprecated as it can no longer occur.
+- Internal fixes/tweaks to improve stability.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <NoWarn>1591;1573</NoWarn>
     <DocumentationFile>bin\Release\netstandard1.6\.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <NoWarn>1591;1573</NoWarn>
     <DocumentationFile>bin\Debug\netstandard1.6\.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="Voice\Net\VoiceWebSocket.Payloads.cs" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\netstandard1.5\Discore.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591;1573</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\netstandard1.5\Discore.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591;1573</NoWarn>
+  </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+    <PackageReference Include="ConcurrentHashSet" Version="1.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Nito.AsyncEx.Coordination" Version="1.0.2" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
-    <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.0" />
+    <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.2" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
 </Project>

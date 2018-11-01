@@ -445,13 +445,13 @@ namespace Discore
             return null;
         }
 
-        public DiscordAvatarData GetAvatar(string key)
+        public DiscordImageData GetAvatar(string key)
         {
             AssertContainer();
 
             string nestedData = GetString(key);
             if (!string.IsNullOrWhiteSpace(nestedData))
-                return new DiscordAvatarData(nestedData);
+                return DiscordImageData.FromDataUriScheme(nestedData);
 
             return null;
         }
@@ -471,11 +471,23 @@ namespace Discore
             return apiValue;
         }
 
+        [Obsolete("Use SetSnowflake instead.", true)]
+        public DiscordApiData Set(string key, Snowflake snowflake)
+        {
+            throw new NotSupportedException();
+        }
+
+        [Obsolete("Use SetSnowflake instead.", true)]
+        public DiscordApiData Set(string key, Snowflake? snowflake)
+        {
+            throw new NotSupportedException();
+        }
+
         /// <summary>
         /// Sets a snowflake value in this api data container.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if this data is not a container.</exception>
-        public DiscordApiData Set(string key, Snowflake snowflake)
+        public DiscordApiData SetSnowflake(string key, Snowflake snowflake)
         {
             AssertContainer();
 
@@ -488,7 +500,7 @@ namespace Discore
         /// Sets a snowflake value in this api data container.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if this data is not a container.</exception>
-        public DiscordApiData Set(string key, Snowflake? snowflake)
+        public DiscordApiData SetSnowflake(string key, Snowflake? snowflake)
         {
             AssertContainer();
 
@@ -544,11 +556,11 @@ namespace Discore
             return apiData;
         }
 
-        public DiscordApiData Set(string key, DiscordAvatarData avatar)
+        public DiscordApiData Set(string key, DiscordImageData avatar)
         {
             AssertContainer();
 
-            DiscordApiData apiData = new DiscordApiData(avatar.ToFormattedString());
+            DiscordApiData apiData = new DiscordApiData(avatar.ToDataUriScheme());
             data[key] = apiData;
             return apiData;
         }

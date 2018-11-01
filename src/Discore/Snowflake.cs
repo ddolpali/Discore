@@ -3,11 +3,23 @@
 namespace Discore
 {
     /// <summary>
-    /// Twitter's snowflake format. Used for ID's in the Discord Api.
+    /// Twitter's snowflake format. Used for IDs in the Discord Api.
     /// https://github.com/twitter/snowflake/tree/snowflake-2010
     /// </summary>
     public struct Snowflake
     {
+        /// <summary>
+        /// Gets a snowflake representing nothing (or zero).
+        /// <para>
+        /// This can be used when modifying objects such as guilds (e.g. setting/removing an AFK channel). 
+        /// </para>
+        /// <para>
+        /// Leaving properties null when modifying a guild will cause them to be left unchanged. 
+        /// However, <see cref="None"/> will clear the value (i.e. removing the AFK channel).
+        /// </para>
+        /// </summary>
+        public static readonly Snowflake None = new Snowflake(0);
+
         public ulong Id;
 
         public Snowflake(ulong id)
@@ -115,6 +127,16 @@ namespace Discore
         public static bool operator !=(Snowflake a, Snowflake b)
         {
             return a.Id != b.Id;
+        }
+
+        public static implicit operator ulong(Snowflake snowflake)
+        {
+            return snowflake.Id;
+        }
+
+        public static implicit operator Snowflake(ulong id)
+        {
+            return new Snowflake(id);
         }
     }
 }

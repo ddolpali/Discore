@@ -1,11 +1,13 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Text;
 
 namespace Discore.Http
 {
     /// <summary>
     /// An exception representing an error sent by the Discord HTTP API.
     /// </summary>
-    public class DiscordHttpApiException : DiscoreException
+    public class DiscordHttpApiException : Exception
     {
         /// <summary>
         /// Gets the custom Discord HTTP error code.
@@ -17,10 +19,24 @@ namespace Discore.Http
         public HttpStatusCode HttpStatusCode { get; }
 
         internal DiscordHttpApiException(string message, DiscordHttpErrorCode errorCode, HttpStatusCode httpCode)
-            : base($"{message} ({errorCode})({(int)errorCode})")
+            : base(CreateExceptionMessage(message, errorCode, httpCode))
         {
             ErrorCode = errorCode;
             HttpStatusCode = httpCode;
+        }
+
+        static string CreateExceptionMessage(string message, DiscordHttpErrorCode errorCode, HttpStatusCode httpCode)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (errorCode == DiscordHttpErrorCode.None)
+                sb.Append($"{httpCode}({(int)httpCode}): ");
+            else
+                sb.Append($"{errorCode}({(int)errorCode}): ");
+
+            sb.Append(message);
+
+            return sb.ToString();
         }
     }
 }

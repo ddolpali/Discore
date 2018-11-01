@@ -1,4 +1,5 @@
 ﻿using Discore.Http;
+using System;
 using System.Threading.Tasks;
 
 namespace Discore
@@ -15,26 +16,34 @@ namespace Discore
         /// </summary>
         public int UserLimit { get; }
 
-        DiscordHttpChannelEndpoint channelsHttp;
+        /// <summary>
+        /// Gets the ID of the parent category channel or null if the channel is not in a category.
+        /// </summary>
+        public Snowflake? ParentId { get; }
 
-        internal DiscordGuildVoiceChannel(IDiscordApplication app, DiscordApiData data, Snowflake? guildId = null)
-            : base(app, data, DiscordGuildChannelType.Voice, guildId)
+        DiscordHttpClient http;
+
+        internal DiscordGuildVoiceChannel(DiscordHttpClient http, DiscordApiData data, Snowflake? guildId = null)
+            : base(http, data, DiscordChannelType.GuildVoice, guildId)
         {
-            channelsHttp = app.HttpApi.Channels;
+            this.http = http;
 
             Bitrate = data.GetInteger("bitrate").Value;
             UserLimit = data.GetInteger("user_limit").Value;
+            ParentId = data.GetSnowflake("parent_id");
         }
 
         /// <summary>
-        /// Modifies this voice channel.
-        /// Any parameters not specified will be unchanged.
+        /// Modifies this voice channel's settings.
+        /// <para>Requires <see cref="DiscordPermission.ManageChannels"/>.</para>
         /// </summary>
+        /// <param name="options">A set of options to modify the channel with</param>
+        /// <returns>Returns the updated voice channel.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="DiscordHttpApiException"></exception>
-        public Task<DiscordGuildVoiceChannel> Modify(string name = null, int? position = null, 
-            int? bitrate = null, int? userLimit = null)
+        public Task<DiscordGuildVoiceChannel> Modify(GuildVoiceChannelOptions options)
         {
-            return channelsHttp.Modify<DiscordGuildVoiceChannel>(Id, name, position, null, bitrate, userLimit);
+            return http.ModifyVoiceChannel(Id, options);
         }
     }
 }

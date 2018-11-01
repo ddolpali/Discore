@@ -3,7 +3,8 @@
 bin/
 obj/
 .vs/
+.vscode/
 project.lock.json
 .DS_Store
 token.txt
-*.xproj.user
+*.csproj.user

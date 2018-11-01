@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Discore
+﻿namespace Discore
 {
     public sealed class DiscordUserPresence
     {
         /// <summary>
-        /// Gets the id of the user this presence is for.
+        /// Gets the ID of the user this presence is for.
         /// </summary>
         public Snowflake UserId { get; }
 
@@ -19,7 +17,7 @@ namespace Discore
         /// </summary>
         public DiscordUserStatus Status { get; }
 
-        internal DiscordUserPresence(DiscordApiData data, Snowflake userId)
+        internal DiscordUserPresence(Snowflake userId, DiscordApiData data)
         {
             UserId = userId;
 
@@ -35,9 +33,20 @@ namespace Discore
             string statusStr = data.GetString("status");
             if (statusStr != null)
             {
-                DiscordUserStatus status;
-                if (Enum.TryParse(statusStr, true, out status))
-                    Status = status;
+                DiscordUserStatus? status = Utils.ParseUserStatus(statusStr);
+
+                if (!status.HasValue)
+                {
+                    // If we don't have a value for the status yet, 
+                    // we at least know that they aren't offline.
+                    Status = DiscordUserStatus.Online;
+
+                    // However, this should issue a warning.
+                    DiscoreLogger.Global.LogWarning($"[DiscordUserPresence] Failed to deserialize status for user {UserId}. " +
+                        $"status = {statusStr}");
+                }
+                else
+                    Status = status.Value;
             }
         }
     }
